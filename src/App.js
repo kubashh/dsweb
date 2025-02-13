@@ -3,5 +3,9 @@ export const App = () => {
     <h1>
       Hello DeathScript!
     </h1>
+    <input
+      type="text"
+      value=""
+    />
   </div>
 }
