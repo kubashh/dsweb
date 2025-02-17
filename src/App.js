@@ -1,37 +1,33 @@
-import { useState } from "react"
 import { run } from "./run"
+import { Editor } from "./editor/Editor"
+import { Output } from "./editor/Output"
+
+
+const Button = ({ onClick }) => <input
+  type="button"
+  style={{
+    fontSize: 32
+  }}
+  value="Run"
+  onClick={onClick}
+/>
+
 
 export const App = () => {
-  const [text, setText] = useState(``)
-  const [output, setOutput] = useState([])
-
-  let value = output
-  const addOutput = (text) => {
-    value += text
-    setOutput(value)
-  }
-
   return <div
     id="main"
   >
     <h1
       id="a"
       style={{
-        color: `white`
+        color: `white`,
+        marginLeft: 16
       }}
     >
-      Hello DeathScript!
+      DeathScript
     </h1>
-    <div
-      id="c"
-    >
-      main.ds
-    </div>
-    <div
-      id="d"
-    >
-      output
-    </div>
+    <div id="c">main.ds</div>
+    <div id="d">output</div>
     <div
       id="b"
       style={{
@@ -39,30 +35,11 @@ export const App = () => {
         alignItems: `center`
       }}
     >
-      <input
-        type="button"
-        style={{
-          fontSize: 32
-        }}
-        value="Run"
-        onClick={() => {
-          value = ``
-          run(text, addOutput)
-        }}
+      <Button
+        onClick={run}
       />
     </div>
-    <textarea
-      id="e"
-      type="textarea"
-      value={text}
-      onChange={({ target: { value } }) => setText(value)}
-    />
-    <textarea
-      id="f"
-      type="textarea"
-      value={output}
-      onChange={({ target: { value } }) => setText(value)}
-      readOnly
-    />
+    <Editor />
+    <Output />
   </div>
 }

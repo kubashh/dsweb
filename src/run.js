@@ -1,21 +1,28 @@
+/*const memory = {}
+
 const ds = {
   clear: (text, pm) => {
 
   }
+}*/
+
+const getTrimmedLines = (text) => {
+  return text.split(`\n`)
+    .filter((line) => line !== ``)
+    .map((line) => {
+      return line.trim()
+    })
 }
 
-const getLines = (text) => {
-  return text.split(`\n`).filter((text) => text != ``)
-}
+export const run = () => {
+  window.data.addOutput()
+  const lines = getTrimmedLines(window.data.code)
 
-export const run = (code, addOutput) => {
-  const lines = getLines(code)
-
-  for(const line of lines) {
+  for(let line of lines) {
     if(line.includes(`print`)) {
-      addOutput(line.slice(6))
+      window.data.addOutput(`${line.slice(6)}\n`)
     }
   }
 
-  addOutput(`\nDone`)
+  window.data.addOutput(`\nDone`)
 }
