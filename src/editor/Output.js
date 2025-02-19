@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export const Output = () => {
   const [output, setOutput] = useState([])
+  const ref = useRef()
 
   let value = output
   const addOutput = (newText) => {
@@ -13,9 +14,14 @@ export const Output = () => {
     setOutput(value)
   }
 
+  useEffect(() => {
+    ref.current.scrollTop = ref.current.scrollHeight
+  })
+
   window.data.addOutput = addOutput
 
   return <textarea
+    ref={ref}
     id="f"
     type="textarea"
     value={output}
